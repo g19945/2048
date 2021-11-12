@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>2048inElm</title>
+  <title>Elmtm2048</title>
   <style>body { padding: 0; margin: 0; }</style>
 </head>
 
@@ -5241,16 +5241,16 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$element = _Browser_element;
-var $author$project$Elmtm2048sub3$Playing = F2(
+var $author$project$Elmtm2048comp$Playing = F2(
 	function (a, b) {
 		return {$: 'Playing', a: a, b: b};
 	});
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $author$project$Elmtm2048sub3$init = function (_v0) {
+var $author$project$Elmtm2048comp$init = function (_v0) {
 	return _Utils_Tuple2(
 		A2(
-			$author$project$Elmtm2048sub3$Playing,
+			$author$project$Elmtm2048comp$Playing,
 			_List_fromArray(
 				[
 					{d: 2, prevX: 1, prevY: 2, x: 1, y: 2},
@@ -5261,14 +5261,14 @@ var $author$project$Elmtm2048sub3$init = function (_v0) {
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$Elmtm2048sub3$subscriptions = function (model) {
+var $author$project$Elmtm2048comp$subscriptions = function (model) {
 	return $elm$core$Platform$Sub$none;
 };
-var $author$project$Elmtm2048sub3$Finish = F2(
+var $author$project$Elmtm2048comp$Finish = F2(
 	function (a, b) {
 		return {$: 'Finish', a: a, b: b};
 	});
-var $author$project$Elmtm2048sub3$Rand = function (a) {
+var $author$project$Elmtm2048comp$Rand = function (a) {
 	return {$: 'Rand', a: a};
 };
 var $elm$core$List$append = F2(
@@ -5473,20 +5473,6 @@ var $elm$core$List$maximum = function (list) {
 		return $elm$core$Maybe$Nothing;
 	}
 };
-var $elm$core$Basics$min = F2(
-	function (x, y) {
-		return (_Utils_cmp(x, y) < 0) ? x : y;
-	});
-var $elm$core$List$minimum = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(
-			A3($elm$core$List$foldl, $elm$core$Basics$min, x, xs));
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
 var $elm$core$Basics$modBy = _Basics_modBy;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -5504,7 +5490,7 @@ var $elm$core$Maybe$withDefault = F2(
 			return _default;
 		}
 	});
-var $author$project$Elmtm2048sub3$merge = function (line) {
+var $author$project$Elmtm2048comp$merge = function (line) {
 	var tail = A2($elm$core$List$drop, 1, line);
 	var head = A2(
 		$elm$core$Maybe$withDefault,
@@ -5524,19 +5510,19 @@ var $author$project$Elmtm2048sub3$merge = function (line) {
 					head,
 					{d: head.d * 2})
 				]),
-				$author$project$Elmtm2048sub3$merge(
+				$author$project$Elmtm2048comp$merge(
 				A2($elm$core$List$drop, 2, line))
 			])) : $elm$core$List$concat(
 		_List_fromArray(
 			[
 				_List_fromArray(
 				[head]),
-				$author$project$Elmtm2048sub3$merge(
+				$author$project$Elmtm2048comp$merge(
 				A2($elm$core$List$drop, 1, line))
 			]))));
 };
 var $elm$core$List$sortBy = _List_sortBy;
-var $author$project$Elmtm2048sub3$slidedown = function (column) {
+var $author$project$Elmtm2048comp$slidedown = function (column) {
 	return A2(
 		$elm$core$List$indexedMap,
 		F2(
@@ -5545,7 +5531,7 @@ var $author$project$Elmtm2048sub3$slidedown = function (column) {
 					c,
 					{prevX: c.x, prevY: c.y, y: 4 - i});
 			}),
-		$author$project$Elmtm2048sub3$merge(
+		$author$project$Elmtm2048comp$merge(
 			$elm$core$List$reverse(
 				A2(
 					$elm$core$List$sortBy,
@@ -5554,7 +5540,7 @@ var $author$project$Elmtm2048sub3$slidedown = function (column) {
 					},
 					column))));
 };
-var $author$project$Elmtm2048sub3$slideleft = function (column) {
+var $author$project$Elmtm2048comp$slideleft = function (column) {
 	return A2(
 		$elm$core$List$indexedMap,
 		F2(
@@ -5563,7 +5549,7 @@ var $author$project$Elmtm2048sub3$slideleft = function (column) {
 					c,
 					{prevX: c.x, prevY: c.y, x: i + 1});
 			}),
-		$author$project$Elmtm2048sub3$merge(
+		$author$project$Elmtm2048comp$merge(
 			A2(
 				$elm$core$List$sortBy,
 				function ($) {
@@ -5571,7 +5557,7 @@ var $author$project$Elmtm2048sub3$slideleft = function (column) {
 				},
 				column)));
 };
-var $author$project$Elmtm2048sub3$slideright = function (column) {
+var $author$project$Elmtm2048comp$slideright = function (column) {
 	return A2(
 		$elm$core$List$indexedMap,
 		F2(
@@ -5580,7 +5566,7 @@ var $author$project$Elmtm2048sub3$slideright = function (column) {
 					c,
 					{prevX: c.x, prevY: c.y, x: 4 - i});
 			}),
-		$author$project$Elmtm2048sub3$merge(
+		$author$project$Elmtm2048comp$merge(
 			$elm$core$List$reverse(
 				A2(
 					$elm$core$List$sortBy,
@@ -5589,7 +5575,7 @@ var $author$project$Elmtm2048sub3$slideright = function (column) {
 					},
 					column))));
 };
-var $author$project$Elmtm2048sub3$slideup = function (column) {
+var $author$project$Elmtm2048comp$slideup = function (column) {
 	return A2(
 		$elm$core$List$indexedMap,
 		F2(
@@ -5598,7 +5584,7 @@ var $author$project$Elmtm2048sub3$slideup = function (column) {
 					c,
 					{prevX: c.x, prevY: c.y, y: i + 1});
 			}),
-		$author$project$Elmtm2048sub3$merge(
+		$author$project$Elmtm2048comp$merge(
 			A2(
 				$elm$core$List$sortBy,
 				function ($) {
@@ -5617,7 +5603,7 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
-var $author$project$Elmtm2048sub3$selectx = F2(
+var $author$project$Elmtm2048comp$selectx = F2(
 	function (model, x) {
 		return A2(
 			$elm$core$List$filter,
@@ -5626,15 +5612,15 @@ var $author$project$Elmtm2048sub3$selectx = F2(
 			},
 			model);
 	});
-var $author$project$Elmtm2048sub3$splitx = function (model) {
+var $author$project$Elmtm2048comp$splitx = function (model) {
 	return A2(
 		$elm$core$List$map,
 		function (x) {
-			return A2($author$project$Elmtm2048sub3$selectx, model, x);
+			return A2($author$project$Elmtm2048comp$selectx, model, x);
 		},
 		A2($elm$core$List$range, 1, 4));
 };
-var $author$project$Elmtm2048sub3$selecty = F2(
+var $author$project$Elmtm2048comp$selecty = F2(
 	function (model, y) {
 		return A2(
 			$elm$core$List$filter,
@@ -5643,15 +5629,15 @@ var $author$project$Elmtm2048sub3$selecty = F2(
 			},
 			model);
 	});
-var $author$project$Elmtm2048sub3$splity = function (model) {
+var $author$project$Elmtm2048comp$splity = function (model) {
 	return A2(
 		$elm$core$List$map,
 		function (y) {
-			return A2($author$project$Elmtm2048sub3$selecty, model, y);
+			return A2($author$project$Elmtm2048comp$selecty, model, y);
 		},
 		A2($elm$core$List$range, 1, 4));
 };
-var $author$project$Elmtm2048sub3$vacant = function (model) {
+var $author$project$Elmtm2048comp$vacant = function (model) {
 	return A2(
 		$elm$core$List$filter,
 		function (i) {
@@ -5667,7 +5653,7 @@ var $author$project$Elmtm2048sub3$vacant = function (model) {
 		},
 		A2($elm$core$List$range, 0, 15));
 };
-var $author$project$Elmtm2048sub3$update = F2(
+var $author$project$Elmtm2048comp$update = F2(
 	function (msg, model) {
 		switch (model.$) {
 			case 'SetUp':
@@ -5676,7 +5662,7 @@ var $author$project$Elmtm2048sub3$update = F2(
 				var stones = model.a;
 				var result = model.b;
 				if (msg.$ === 'Restart') {
-					return $author$project$Elmtm2048sub3$init(_Utils_Tuple0);
+					return $author$project$Elmtm2048comp$init(_Utils_Tuple0);
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 				}
@@ -5687,32 +5673,27 @@ var $author$project$Elmtm2048sub3$update = F2(
 					$elm$core$List$concat(
 						A2(
 							$elm$core$List$map,
-							$author$project$Elmtm2048sub3$slideup,
-							$author$project$Elmtm2048sub3$splitx(stones))));
+							$author$project$Elmtm2048comp$slideup,
+							$author$project$Elmtm2048comp$splitx(stones))));
+				var nStone = 16 - $elm$core$List$length(stones);
 				var nRight = $elm$core$List$length(
 					$elm$core$List$concat(
 						A2(
 							$elm$core$List$map,
-							$author$project$Elmtm2048sub3$slideright,
-							$author$project$Elmtm2048sub3$splity(stones))));
+							$author$project$Elmtm2048comp$slideright,
+							$author$project$Elmtm2048comp$splity(stones))));
 				var nLeft = $elm$core$List$length(
 					$elm$core$List$concat(
 						A2(
 							$elm$core$List$map,
-							$author$project$Elmtm2048sub3$slideleft,
-							$author$project$Elmtm2048sub3$splity(stones))));
+							$author$project$Elmtm2048comp$slideleft,
+							$author$project$Elmtm2048comp$splity(stones))));
 				var nDown = $elm$core$List$length(
 					$elm$core$List$concat(
 						A2(
 							$elm$core$List$map,
-							$author$project$Elmtm2048sub3$slidedown,
-							$author$project$Elmtm2048sub3$splitx(stones))));
-				var nStone = 16 - A2(
-					$elm$core$Maybe$withDefault,
-					0,
-					$elm$core$List$minimum(
-						_List_fromArray(
-							[nUp, nDown, nRight, nLeft])));
+							$author$project$Elmtm2048comp$slidedown,
+							$author$project$Elmtm2048comp$splitx(stones))));
 				var max = A2(
 					$elm$core$Maybe$withDefault,
 					0,
@@ -5725,12 +5706,12 @@ var $author$project$Elmtm2048sub3$update = F2(
 							stones)));
 				if (max >= 2048) {
 					return _Utils_Tuple2(
-						A2($author$project$Elmtm2048sub3$Finish, stones, true),
+						A2($author$project$Elmtm2048comp$Finish, stones, true),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					if (!nStone) {
 						return _Utils_Tuple2(
-							A2($author$project$Elmtm2048sub3$Finish, stones, true),
+							A2($author$project$Elmtm2048comp$Finish, stones, true),
 							$elm$core$Platform$Cmd$none);
 					} else {
 						switch (msg.$) {
@@ -5738,69 +5719,69 @@ var $author$project$Elmtm2048sub3$update = F2(
 								var dir = msg.a;
 								return _Utils_Tuple2(
 									A2(
-										$author$project$Elmtm2048sub3$Playing,
+										$author$project$Elmtm2048comp$Playing,
 										stones,
 										$elm$core$Maybe$Just(dir)),
 									$elm$core$Platform$Cmd$none);
 							case 'MouseOut':
 								return _Utils_Tuple2(
-									A2($author$project$Elmtm2048sub3$Playing, stones, $elm$core$Maybe$Nothing),
+									A2($author$project$Elmtm2048comp$Playing, stones, $elm$core$Maybe$Nothing),
 									$elm$core$Platform$Cmd$none);
 							case 'Up':
 								return _Utils_Tuple2(
 									A2(
-										$author$project$Elmtm2048sub3$Playing,
+										$author$project$Elmtm2048comp$Playing,
 										$elm$core$List$concat(
 											A2(
 												$elm$core$List$map,
-												$author$project$Elmtm2048sub3$slideup,
-												$author$project$Elmtm2048sub3$splitx(stones))),
+												$author$project$Elmtm2048comp$slideup,
+												$author$project$Elmtm2048comp$splitx(stones))),
 										button),
 									A2(
 										$elm$random$Random$generate,
-										$author$project$Elmtm2048sub3$Rand,
+										$author$project$Elmtm2048comp$Rand,
 										A2($elm$random$Random$int, 1, nStone)));
 							case 'Down':
 								return _Utils_Tuple2(
 									A2(
-										$author$project$Elmtm2048sub3$Playing,
+										$author$project$Elmtm2048comp$Playing,
 										$elm$core$List$concat(
 											A2(
 												$elm$core$List$map,
-												$author$project$Elmtm2048sub3$slidedown,
-												$author$project$Elmtm2048sub3$splitx(stones))),
+												$author$project$Elmtm2048comp$slidedown,
+												$author$project$Elmtm2048comp$splitx(stones))),
 										button),
 									A2(
 										$elm$random$Random$generate,
-										$author$project$Elmtm2048sub3$Rand,
+										$author$project$Elmtm2048comp$Rand,
 										A2($elm$random$Random$int, 1, nStone)));
 							case 'Right':
 								return _Utils_Tuple2(
 									A2(
-										$author$project$Elmtm2048sub3$Playing,
+										$author$project$Elmtm2048comp$Playing,
 										$elm$core$List$concat(
 											A2(
 												$elm$core$List$map,
-												$author$project$Elmtm2048sub3$slideright,
-												$author$project$Elmtm2048sub3$splity(stones))),
+												$author$project$Elmtm2048comp$slideright,
+												$author$project$Elmtm2048comp$splity(stones))),
 										button),
 									A2(
 										$elm$random$Random$generate,
-										$author$project$Elmtm2048sub3$Rand,
+										$author$project$Elmtm2048comp$Rand,
 										A2($elm$random$Random$int, 1, nStone)));
 							case 'Left':
 								return _Utils_Tuple2(
 									A2(
-										$author$project$Elmtm2048sub3$Playing,
+										$author$project$Elmtm2048comp$Playing,
 										$elm$core$List$concat(
 											A2(
 												$elm$core$List$map,
-												$author$project$Elmtm2048sub3$slideleft,
-												$author$project$Elmtm2048sub3$splity(stones))),
+												$author$project$Elmtm2048comp$slideleft,
+												$author$project$Elmtm2048comp$splity(stones))),
 										button),
 									A2(
 										$elm$random$Random$generate,
-										$author$project$Elmtm2048sub3$Rand,
+										$author$project$Elmtm2048comp$Rand,
 										A2($elm$random$Random$int, 1, nStone)));
 							case 'Rand':
 								var r = msg.a;
@@ -5811,7 +5792,7 @@ var $author$project$Elmtm2048sub3$update = F2(
 										A2(
 											$elm$core$List$drop,
 											r - 1,
-											$author$project$Elmtm2048sub3$vacant(stones))));
+											$author$project$Elmtm2048comp$vacant(stones))));
 								var stone = {
 									d: 2,
 									prevX: 0,
@@ -5821,7 +5802,7 @@ var $author$project$Elmtm2048sub3$update = F2(
 								};
 								return _Utils_Tuple2(
 									A2(
-										$author$project$Elmtm2048sub3$Playing,
+										$author$project$Elmtm2048comp$Playing,
 										A2($elm$core$List$cons, stone, stones),
 										button),
 									$elm$core$Platform$Cmd$none);
@@ -5835,12 +5816,12 @@ var $author$project$Elmtm2048sub3$update = F2(
 				}
 		}
 	});
-var $author$project$Elmtm2048sub3$Restart = {$: 'Restart'};
+var $author$project$Elmtm2048comp$Restart = {$: 'Restart'};
 var $elm$html$Html$br = _VirtualDom_node('br');
 var $elm$html$Html$button = _VirtualDom_node('button');
-var $author$project$Elmtm2048sub3$Down = {$: 'Down'};
-var $author$project$Elmtm2048sub3$MouseOut = {$: 'MouseOut'};
-var $author$project$Elmtm2048sub3$MouseOver = function (a) {
+var $author$project$Elmtm2048comp$Down = {$: 'Down'};
+var $author$project$Elmtm2048comp$MouseOut = {$: 'MouseOut'};
+var $author$project$Elmtm2048comp$MouseOver = function (a) {
 	return {$: 'MouseOver', a: a};
 };
 var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
@@ -5890,7 +5871,7 @@ var $elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
 var $elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
 var $elm$svg$Svg$Attributes$x = _VirtualDom_attribute('x');
 var $elm$svg$Svg$Attributes$y = _VirtualDom_attribute('y');
-var $author$project$Elmtm2048sub3$buttonDown = function (over) {
+var $author$project$Elmtm2048comp$buttonDown = function (over) {
 	var op = function () {
 		if (over.$ === 'Nothing') {
 			return '0.6';
@@ -5904,10 +5885,10 @@ var $author$project$Elmtm2048sub3$buttonDown = function (over) {
 		_List_fromArray(
 			[
 				$elm$svg$Svg$Attributes$transform('translate(275 580)'),
-				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048sub3$Down),
+				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048comp$Down),
 				$elm$svg$Svg$Events$onMouseOver(
-				$author$project$Elmtm2048sub3$MouseOver(2)),
-				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048sub3$MouseOut)
+				$author$project$Elmtm2048comp$MouseOver(2)),
+				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048comp$MouseOut)
 			]),
 		_List_fromArray(
 			[
@@ -5942,8 +5923,8 @@ var $author$project$Elmtm2048sub3$buttonDown = function (over) {
 					]))
 			]));
 };
-var $author$project$Elmtm2048sub3$Left = {$: 'Left'};
-var $author$project$Elmtm2048sub3$buttonLeft = function (over) {
+var $author$project$Elmtm2048comp$Left = {$: 'Left'};
+var $author$project$Elmtm2048comp$buttonLeft = function (over) {
 	var op = function () {
 		if (over.$ === 'Nothing') {
 			return '0.6';
@@ -5957,10 +5938,10 @@ var $author$project$Elmtm2048sub3$buttonLeft = function (over) {
 		_List_fromArray(
 			[
 				$elm$svg$Svg$Attributes$transform('translate(225 555)'),
-				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048sub3$Left),
+				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048comp$Left),
 				$elm$svg$Svg$Events$onMouseOver(
-				$author$project$Elmtm2048sub3$MouseOver(3)),
-				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048sub3$MouseOut)
+				$author$project$Elmtm2048comp$MouseOver(3)),
+				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048comp$MouseOut)
 			]),
 		_List_fromArray(
 			[
@@ -5995,8 +5976,8 @@ var $author$project$Elmtm2048sub3$buttonLeft = function (over) {
 					]))
 			]));
 };
-var $author$project$Elmtm2048sub3$Right = {$: 'Right'};
-var $author$project$Elmtm2048sub3$buttonRight = function (over) {
+var $author$project$Elmtm2048comp$Right = {$: 'Right'};
+var $author$project$Elmtm2048comp$buttonRight = function (over) {
 	var op = function () {
 		if (over.$ === 'Nothing') {
 			return '0.6';
@@ -6010,10 +5991,10 @@ var $author$project$Elmtm2048sub3$buttonRight = function (over) {
 		_List_fromArray(
 			[
 				$elm$svg$Svg$Attributes$transform('translate(325 555)'),
-				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048sub3$Right),
+				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048comp$Right),
 				$elm$svg$Svg$Events$onMouseOver(
-				$author$project$Elmtm2048sub3$MouseOver(4)),
-				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048sub3$MouseOut)
+				$author$project$Elmtm2048comp$MouseOver(4)),
+				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048comp$MouseOut)
 			]),
 		_List_fromArray(
 			[
@@ -6048,8 +6029,8 @@ var $author$project$Elmtm2048sub3$buttonRight = function (over) {
 					]))
 			]));
 };
-var $author$project$Elmtm2048sub3$Up = {$: 'Up'};
-var $author$project$Elmtm2048sub3$buttonUp = function (over) {
+var $author$project$Elmtm2048comp$Up = {$: 'Up'};
+var $author$project$Elmtm2048comp$buttonUp = function (over) {
 	var op = function () {
 		if (over.$ === 'Nothing') {
 			return '0.6';
@@ -6063,10 +6044,10 @@ var $author$project$Elmtm2048sub3$buttonUp = function (over) {
 		_List_fromArray(
 			[
 				$elm$svg$Svg$Attributes$transform('translate(275 530)'),
-				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048sub3$Up),
+				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048comp$Up),
 				$elm$svg$Svg$Events$onMouseOver(
-				$author$project$Elmtm2048sub3$MouseOver(1)),
-				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048sub3$MouseOut)
+				$author$project$Elmtm2048comp$MouseOver(1)),
+				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048comp$MouseOut)
 			]),
 		_List_fromArray(
 			[
@@ -6888,9 +6869,9 @@ var $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$node = F5(
 				els));
 	});
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$svg = $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$node;
-var $author$project$Elmtm2048sub3$animatedSvg = $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$svg(
+var $author$project$Elmtm2048comp$animatedSvg = $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$svg(
 	{_class: $elm$svg$Svg$Attributes$class});
-var $author$project$Elmtm2048sub3$animatedG = $author$project$Elmtm2048sub3$animatedSvg($elm$svg$Svg$g);
+var $author$project$Elmtm2048comp$animatedG = $author$project$Elmtm2048comp$animatedSvg($elm$svg$Svg$g);
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$Step = F2(
 	function (a, b) {
 		return {$: 'Step', a: a, b: b};
@@ -7032,7 +7013,7 @@ var $andrewMacmurray$elm_simple_animation$Internal$Transform$Y = function (a) {
 };
 var $andrewMacmurray$elm_simple_animation$Internal$Transform$y = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Transform$Translate, $andrewMacmurray$elm_simple_animation$Internal$Transform$Y);
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$Property$y = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Transform, $andrewMacmurray$elm_simple_animation$Internal$Transform$y);
-var $author$project$Elmtm2048sub3$fade = F2(
+var $author$project$Elmtm2048comp$fade = F2(
 	function (start, stop) {
 		return A2(
 			$andrewMacmurray$elm_simple_animation$Simple$Animation$steps,
@@ -7057,11 +7038,11 @@ var $author$project$Elmtm2048sub3$fade = F2(
 				]));
 	});
 var $elm$svg$Svg$Attributes$opacity = _VirtualDom_attribute('opacity');
-var $author$project$Elmtm2048sub3$panel = function (digit) {
+var $author$project$Elmtm2048comp$panel = function (digit) {
 	return A3(
-		$author$project$Elmtm2048sub3$animatedG,
+		$author$project$Elmtm2048comp$animatedG,
 		A2(
-			$author$project$Elmtm2048sub3$fade,
+			$author$project$Elmtm2048comp$fade,
 			{x: digit.prevX * 100, y: digit.prevY * 100},
 			{x: digit.x * 100, y: digit.y * 100}),
 		_List_Nil,
@@ -7100,7 +7081,7 @@ var $author$project$Elmtm2048sub3$panel = function (digit) {
 			]));
 };
 var $elm$svg$Svg$svg = $elm$svg$Svg$trustedNode('svg');
-var $author$project$Elmtm2048sub3$view = function (model) {
+var $author$project$Elmtm2048comp$view = function (model) {
 	switch (model.$) {
 		case 'SetUp':
 			return $elm$html$Html$text('setup');
@@ -7118,7 +7099,7 @@ var $author$project$Elmtm2048sub3$view = function (model) {
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$Elmtm2048sub3$Restart),
+								$elm$html$Html$Events$onClick($author$project$Elmtm2048comp$Restart),
 								$elm$svg$Svg$Attributes$fontSize('1000')
 							]),
 						_List_fromArray(
@@ -7136,7 +7117,7 @@ var $author$project$Elmtm2048sub3$view = function (model) {
 						$elm$core$List$concat(
 							_List_fromArray(
 								[
-									A2($elm$core$List$map, $author$project$Elmtm2048sub3$panel, stones)
+									A2($elm$core$List$map, $author$project$Elmtm2048comp$panel, stones)
 								])))
 					]));
 		default:
@@ -7400,10 +7381,10 @@ var $author$project$Elmtm2048sub3$view = function (model) {
 							$elm$svg$Svg$Attributes$ry('3')
 						]),
 					_List_Nil),
-					$author$project$Elmtm2048sub3$buttonUp(button),
-					$author$project$Elmtm2048sub3$buttonDown(button),
-					$author$project$Elmtm2048sub3$buttonLeft(button),
-					$author$project$Elmtm2048sub3$buttonRight(button)
+					$author$project$Elmtm2048comp$buttonUp(button),
+					$author$project$Elmtm2048comp$buttonDown(button),
+					$author$project$Elmtm2048comp$buttonLeft(button),
+					$author$project$Elmtm2048comp$buttonRight(button)
 				]);
 			return A2(
 				$elm$svg$Svg$svg,
@@ -7416,16 +7397,16 @@ var $author$project$Elmtm2048sub3$view = function (model) {
 					_List_fromArray(
 						[
 							buttons,
-							A2($elm$core$List$map, $author$project$Elmtm2048sub3$panel, stones)
+							A2($elm$core$List$map, $author$project$Elmtm2048comp$panel, stones)
 						])));
 	}
 };
-var $author$project$Elmtm2048sub3$main = $elm$browser$Browser$element(
-	{init: $author$project$Elmtm2048sub3$init, subscriptions: $author$project$Elmtm2048sub3$subscriptions, update: $author$project$Elmtm2048sub3$update, view: $author$project$Elmtm2048sub3$view});
-_Platform_export({'Elmtm2048sub3':{'init':$author$project$Elmtm2048sub3$main(
+var $author$project$Elmtm2048comp$main = $elm$browser$Browser$element(
+	{init: $author$project$Elmtm2048comp$init, subscriptions: $author$project$Elmtm2048comp$subscriptions, update: $author$project$Elmtm2048comp$update, view: $author$project$Elmtm2048comp$view});
+_Platform_export({'Elmtm2048comp':{'init':$author$project$Elmtm2048comp$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
 
-  var app = Elm.Elmtm2048sub3.init({ node: document.getElementById("elm") });
+  var app = Elm.Elmtm2048comp.init({ node: document.getElementById("elm") });
 }
 catch (e)
 {
