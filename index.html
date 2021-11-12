@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>2048 in elm</title>
+  <title>Elmtm2048sub3</title>
   <style>body { padding: 0; margin: 0; }</style>
 </head>
 
@@ -5241,31 +5241,34 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$element = _Browser_element;
-var $author$project$Elmtm2048$Playing = function (a) {
-	return {$: 'Playing', a: a};
-};
+var $author$project$Elmtm2048sub3$Playing = F2(
+	function (a, b) {
+		return {$: 'Playing', a: a, b: b};
+	});
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $author$project$Elmtm2048$init = function (_v0) {
+var $author$project$Elmtm2048sub3$init = function (_v0) {
 	return _Utils_Tuple2(
-		$author$project$Elmtm2048$Playing(
+		A2(
+			$author$project$Elmtm2048sub3$Playing,
 			_List_fromArray(
 				[
 					{d: 2, prevX: 1, prevY: 2, x: 1, y: 2},
 					{d: 2, prevX: 3, prevY: 3, x: 3, y: 3}
-				])),
+				]),
+			$elm$core$Maybe$Nothing),
 		$elm$core$Platform$Cmd$none);
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$Elmtm2048$subscriptions = function (model) {
+var $author$project$Elmtm2048sub3$subscriptions = function (model) {
 	return $elm$core$Platform$Sub$none;
 };
-var $author$project$Elmtm2048$Finish = F2(
+var $author$project$Elmtm2048sub3$Finish = F2(
 	function (a, b) {
 		return {$: 'Finish', a: a, b: b};
 	});
-var $author$project$Elmtm2048$Rand = function (a) {
+var $author$project$Elmtm2048sub3$Rand = function (a) {
 	return {$: 'Rand', a: a};
 };
 var $elm$core$List$append = F2(
@@ -5470,6 +5473,20 @@ var $elm$core$List$maximum = function (list) {
 		return $elm$core$Maybe$Nothing;
 	}
 };
+var $elm$core$Basics$min = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) < 0) ? x : y;
+	});
+var $elm$core$List$minimum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$min, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
 var $elm$core$Basics$modBy = _Basics_modBy;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -5487,7 +5504,7 @@ var $elm$core$Maybe$withDefault = F2(
 			return _default;
 		}
 	});
-var $author$project$Elmtm2048$merge = function (line) {
+var $author$project$Elmtm2048sub3$merge = function (line) {
 	var tail = A2($elm$core$List$drop, 1, line);
 	var head = A2(
 		$elm$core$Maybe$withDefault,
@@ -5507,19 +5524,19 @@ var $author$project$Elmtm2048$merge = function (line) {
 					head,
 					{d: head.d * 2})
 				]),
-				$author$project$Elmtm2048$merge(
+				$author$project$Elmtm2048sub3$merge(
 				A2($elm$core$List$drop, 2, line))
 			])) : $elm$core$List$concat(
 		_List_fromArray(
 			[
 				_List_fromArray(
 				[head]),
-				$author$project$Elmtm2048$merge(
+				$author$project$Elmtm2048sub3$merge(
 				A2($elm$core$List$drop, 1, line))
 			]))));
 };
 var $elm$core$List$sortBy = _List_sortBy;
-var $author$project$Elmtm2048$slidedown = function (column) {
+var $author$project$Elmtm2048sub3$slidedown = function (column) {
 	return A2(
 		$elm$core$List$indexedMap,
 		F2(
@@ -5528,7 +5545,7 @@ var $author$project$Elmtm2048$slidedown = function (column) {
 					c,
 					{prevX: c.x, prevY: c.y, y: 4 - i});
 			}),
-		$author$project$Elmtm2048$merge(
+		$author$project$Elmtm2048sub3$merge(
 			$elm$core$List$reverse(
 				A2(
 					$elm$core$List$sortBy,
@@ -5537,7 +5554,7 @@ var $author$project$Elmtm2048$slidedown = function (column) {
 					},
 					column))));
 };
-var $author$project$Elmtm2048$slideleft = function (column) {
+var $author$project$Elmtm2048sub3$slideleft = function (column) {
 	return A2(
 		$elm$core$List$indexedMap,
 		F2(
@@ -5546,7 +5563,7 @@ var $author$project$Elmtm2048$slideleft = function (column) {
 					c,
 					{prevX: c.x, prevY: c.y, x: i + 1});
 			}),
-		$author$project$Elmtm2048$merge(
+		$author$project$Elmtm2048sub3$merge(
 			A2(
 				$elm$core$List$sortBy,
 				function ($) {
@@ -5554,7 +5571,7 @@ var $author$project$Elmtm2048$slideleft = function (column) {
 				},
 				column)));
 };
-var $author$project$Elmtm2048$slideright = function (column) {
+var $author$project$Elmtm2048sub3$slideright = function (column) {
 	return A2(
 		$elm$core$List$indexedMap,
 		F2(
@@ -5563,7 +5580,7 @@ var $author$project$Elmtm2048$slideright = function (column) {
 					c,
 					{prevX: c.x, prevY: c.y, x: 4 - i});
 			}),
-		$author$project$Elmtm2048$merge(
+		$author$project$Elmtm2048sub3$merge(
 			$elm$core$List$reverse(
 				A2(
 					$elm$core$List$sortBy,
@@ -5572,7 +5589,7 @@ var $author$project$Elmtm2048$slideright = function (column) {
 					},
 					column))));
 };
-var $author$project$Elmtm2048$slideup = function (column) {
+var $author$project$Elmtm2048sub3$slideup = function (column) {
 	return A2(
 		$elm$core$List$indexedMap,
 		F2(
@@ -5581,7 +5598,7 @@ var $author$project$Elmtm2048$slideup = function (column) {
 					c,
 					{prevX: c.x, prevY: c.y, y: i + 1});
 			}),
-		$author$project$Elmtm2048$merge(
+		$author$project$Elmtm2048sub3$merge(
 			A2(
 				$elm$core$List$sortBy,
 				function ($) {
@@ -5600,7 +5617,7 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
-var $author$project$Elmtm2048$selectx = F2(
+var $author$project$Elmtm2048sub3$selectx = F2(
 	function (model, x) {
 		return A2(
 			$elm$core$List$filter,
@@ -5609,15 +5626,15 @@ var $author$project$Elmtm2048$selectx = F2(
 			},
 			model);
 	});
-var $author$project$Elmtm2048$splitx = function (model) {
+var $author$project$Elmtm2048sub3$splitx = function (model) {
 	return A2(
 		$elm$core$List$map,
 		function (x) {
-			return A2($author$project$Elmtm2048$selectx, model, x);
+			return A2($author$project$Elmtm2048sub3$selectx, model, x);
 		},
 		A2($elm$core$List$range, 1, 4));
 };
-var $author$project$Elmtm2048$selecty = F2(
+var $author$project$Elmtm2048sub3$selecty = F2(
 	function (model, y) {
 		return A2(
 			$elm$core$List$filter,
@@ -5626,15 +5643,15 @@ var $author$project$Elmtm2048$selecty = F2(
 			},
 			model);
 	});
-var $author$project$Elmtm2048$splity = function (model) {
+var $author$project$Elmtm2048sub3$splity = function (model) {
 	return A2(
 		$elm$core$List$map,
 		function (y) {
-			return A2($author$project$Elmtm2048$selecty, model, y);
+			return A2($author$project$Elmtm2048sub3$selecty, model, y);
 		},
 		A2($elm$core$List$range, 1, 4));
 };
-var $author$project$Elmtm2048$vacant = function (model) {
+var $author$project$Elmtm2048sub3$vacant = function (model) {
 	return A2(
 		$elm$core$List$filter,
 		function (i) {
@@ -5650,7 +5667,7 @@ var $author$project$Elmtm2048$vacant = function (model) {
 		},
 		A2($elm$core$List$range, 0, 15));
 };
-var $author$project$Elmtm2048$update = F2(
+var $author$project$Elmtm2048sub3$update = F2(
 	function (msg, model) {
 		switch (model.$) {
 			case 'SetUp':
@@ -5659,13 +5676,43 @@ var $author$project$Elmtm2048$update = F2(
 				var stones = model.a;
 				var result = model.b;
 				if (msg.$ === 'Restart') {
-					return $author$project$Elmtm2048$init(_Utils_Tuple0);
+					return $author$project$Elmtm2048sub3$init(_Utils_Tuple0);
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 				}
 			default:
 				var stones = model.a;
-				var nStone = 16 - $elm$core$List$length(stones);
+				var button = model.b;
+				var nUp = $elm$core$List$length(
+					$elm$core$List$concat(
+						A2(
+							$elm$core$List$map,
+							$author$project$Elmtm2048sub3$slideup,
+							$author$project$Elmtm2048sub3$splitx(stones))));
+				var nRight = $elm$core$List$length(
+					$elm$core$List$concat(
+						A2(
+							$elm$core$List$map,
+							$author$project$Elmtm2048sub3$slideright,
+							$author$project$Elmtm2048sub3$splity(stones))));
+				var nLeft = $elm$core$List$length(
+					$elm$core$List$concat(
+						A2(
+							$elm$core$List$map,
+							$author$project$Elmtm2048sub3$slideleft,
+							$author$project$Elmtm2048sub3$splity(stones))));
+				var nDown = $elm$core$List$length(
+					$elm$core$List$concat(
+						A2(
+							$elm$core$List$map,
+							$author$project$Elmtm2048sub3$slidedown,
+							$author$project$Elmtm2048sub3$splitx(stones))));
+				var nStone = 16 - A2(
+					$elm$core$Maybe$withDefault,
+					0,
+					$elm$core$List$minimum(
+						_List_fromArray(
+							[nUp, nDown, nRight, nLeft])));
 				var max = A2(
 					$elm$core$Maybe$withDefault,
 					0,
@@ -5676,95 +5723,128 @@ var $author$project$Elmtm2048$update = F2(
 								return $.d;
 							},
 							stones)));
-				if (max >= 16) {
+				if (max >= 2048) {
 					return _Utils_Tuple2(
-						A2($author$project$Elmtm2048$Finish, stones, true),
+						A2($author$project$Elmtm2048sub3$Finish, stones, true),
 						$elm$core$Platform$Cmd$none);
 				} else {
-					switch (msg.$) {
-						case 'Up':
-							return _Utils_Tuple2(
-								$author$project$Elmtm2048$Playing(
-									$elm$core$List$concat(
-										A2(
-											$elm$core$List$map,
-											$author$project$Elmtm2048$slideup,
-											$author$project$Elmtm2048$splitx(stones)))),
-								A2(
-									$elm$random$Random$generate,
-									$author$project$Elmtm2048$Rand,
-									A2($elm$random$Random$int, 1, nStone)));
-						case 'Down':
-							return _Utils_Tuple2(
-								$author$project$Elmtm2048$Playing(
-									$elm$core$List$concat(
-										A2(
-											$elm$core$List$map,
-											$author$project$Elmtm2048$slidedown,
-											$author$project$Elmtm2048$splitx(stones)))),
-								A2(
-									$elm$random$Random$generate,
-									$author$project$Elmtm2048$Rand,
-									A2($elm$random$Random$int, 1, nStone)));
-						case 'Right':
-							return _Utils_Tuple2(
-								$author$project$Elmtm2048$Playing(
-									$elm$core$List$concat(
-										A2(
-											$elm$core$List$map,
-											$author$project$Elmtm2048$slideright,
-											$author$project$Elmtm2048$splity(stones)))),
-								A2(
-									$elm$random$Random$generate,
-									$author$project$Elmtm2048$Rand,
-									A2($elm$random$Random$int, 1, nStone)));
-						case 'Left':
-							return _Utils_Tuple2(
-								$author$project$Elmtm2048$Playing(
-									$elm$core$List$concat(
-										A2(
-											$elm$core$List$map,
-											$author$project$Elmtm2048$slideleft,
-											$author$project$Elmtm2048$splity(stones)))),
-								A2(
-									$elm$random$Random$generate,
-									$author$project$Elmtm2048$Rand,
-									A2($elm$random$Random$int, 1, nStone)));
-						case 'Rand':
-							var r = msg.a;
-							var k = A2(
-								$elm$core$Maybe$withDefault,
-								0,
-								$elm$core$List$head(
+					if (!nStone) {
+						return _Utils_Tuple2(
+							A2($author$project$Elmtm2048sub3$Finish, stones, true),
+							$elm$core$Platform$Cmd$none);
+					} else {
+						switch (msg.$) {
+							case 'MouseOver':
+								var dir = msg.a;
+								return _Utils_Tuple2(
 									A2(
-										$elm$core$List$drop,
-										r - 1,
-										$author$project$Elmtm2048$vacant(stones))));
-							var stone = {
-								d: 2,
-								prevX: 0,
-								prevY: 0,
-								x: A2($elm$core$Basics$modBy, 4, k) + 1,
-								y: ((k / 4) | 0) + 1
-							};
-							return _Utils_Tuple2(
-								$author$project$Elmtm2048$Playing(
-									A2($elm$core$List$cons, stone, stones)),
-								$elm$core$Platform$Cmd$none);
-						case 'KeyPress':
-							var dummy = A2($elm$core$Debug$log, '', 'key');
-							return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-						default:
-							return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+										$author$project$Elmtm2048sub3$Playing,
+										stones,
+										$elm$core$Maybe$Just(dir)),
+									$elm$core$Platform$Cmd$none);
+							case 'MouseOut':
+								return _Utils_Tuple2(
+									A2($author$project$Elmtm2048sub3$Playing, stones, $elm$core$Maybe$Nothing),
+									$elm$core$Platform$Cmd$none);
+							case 'Up':
+								return _Utils_Tuple2(
+									A2(
+										$author$project$Elmtm2048sub3$Playing,
+										$elm$core$List$concat(
+											A2(
+												$elm$core$List$map,
+												$author$project$Elmtm2048sub3$slideup,
+												$author$project$Elmtm2048sub3$splitx(stones))),
+										button),
+									A2(
+										$elm$random$Random$generate,
+										$author$project$Elmtm2048sub3$Rand,
+										A2($elm$random$Random$int, 1, nStone)));
+							case 'Down':
+								return _Utils_Tuple2(
+									A2(
+										$author$project$Elmtm2048sub3$Playing,
+										$elm$core$List$concat(
+											A2(
+												$elm$core$List$map,
+												$author$project$Elmtm2048sub3$slidedown,
+												$author$project$Elmtm2048sub3$splitx(stones))),
+										button),
+									A2(
+										$elm$random$Random$generate,
+										$author$project$Elmtm2048sub3$Rand,
+										A2($elm$random$Random$int, 1, nStone)));
+							case 'Right':
+								return _Utils_Tuple2(
+									A2(
+										$author$project$Elmtm2048sub3$Playing,
+										$elm$core$List$concat(
+											A2(
+												$elm$core$List$map,
+												$author$project$Elmtm2048sub3$slideright,
+												$author$project$Elmtm2048sub3$splity(stones))),
+										button),
+									A2(
+										$elm$random$Random$generate,
+										$author$project$Elmtm2048sub3$Rand,
+										A2($elm$random$Random$int, 1, nStone)));
+							case 'Left':
+								return _Utils_Tuple2(
+									A2(
+										$author$project$Elmtm2048sub3$Playing,
+										$elm$core$List$concat(
+											A2(
+												$elm$core$List$map,
+												$author$project$Elmtm2048sub3$slideleft,
+												$author$project$Elmtm2048sub3$splity(stones))),
+										button),
+									A2(
+										$elm$random$Random$generate,
+										$author$project$Elmtm2048sub3$Rand,
+										A2($elm$random$Random$int, 1, nStone)));
+							case 'Rand':
+								var r = msg.a;
+								var k = A2(
+									$elm$core$Maybe$withDefault,
+									0,
+									$elm$core$List$head(
+										A2(
+											$elm$core$List$drop,
+											r - 1,
+											$author$project$Elmtm2048sub3$vacant(stones))));
+								var stone = {
+									d: 2,
+									prevX: 0,
+									prevY: 0,
+									x: A2($elm$core$Basics$modBy, 4, k) + 1,
+									y: ((k / 4) | 0) + 1
+								};
+								return _Utils_Tuple2(
+									A2(
+										$author$project$Elmtm2048sub3$Playing,
+										A2($elm$core$List$cons, stone, stones),
+										button),
+									$elm$core$Platform$Cmd$none);
+							case 'KeyPress':
+								var dummy = A2($elm$core$Debug$log, '', 'key');
+								return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+							default:
+								return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+						}
 					}
 				}
 		}
 	});
-var $author$project$Elmtm2048$Restart = {$: 'Restart'};
+var $author$project$Elmtm2048sub3$Restart = {$: 'Restart'};
 var $elm$html$Html$br = _VirtualDom_node('br');
 var $elm$html$Html$button = _VirtualDom_node('button');
-var $author$project$Elmtm2048$Down = {$: 'Down'};
+var $author$project$Elmtm2048sub3$Down = {$: 'Down'};
+var $author$project$Elmtm2048sub3$MouseOut = {$: 'MouseOut'};
+var $author$project$Elmtm2048sub3$MouseOver = function (a) {
+	return {$: 'MouseOver', a: a};
+};
 var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
+var $elm$svg$Svg$Attributes$fillOpacity = _VirtualDom_attribute('fill-opacity');
 var $elm$svg$Svg$Attributes$fontSize = _VirtualDom_attribute('font-size');
 var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
 var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
@@ -5786,8 +5866,23 @@ var $elm$svg$Svg$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
+var $elm$svg$Svg$Events$onMouseOut = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseout',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$svg$Svg$Events$onMouseOver = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseover',
+		$elm$json$Json$Decode$succeed(msg));
+};
 var $elm$svg$Svg$rect = $elm$svg$Svg$trustedNode('rect');
+var $elm$svg$Svg$Attributes$rx = _VirtualDom_attribute('rx');
+var $elm$svg$Svg$Attributes$ry = _VirtualDom_attribute('ry');
 var $elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
+var $elm$svg$Svg$Attributes$strokeWidth = _VirtualDom_attribute('stroke-width');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$svg$Svg$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$svg$Svg$text_ = $elm$svg$Svg$trustedNode('text');
@@ -5795,158 +5890,217 @@ var $elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
 var $elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
 var $elm$svg$Svg$Attributes$x = _VirtualDom_attribute('x');
 var $elm$svg$Svg$Attributes$y = _VirtualDom_attribute('y');
-var $author$project$Elmtm2048$buttonDown = A2(
-	$elm$svg$Svg$g,
-	_List_fromArray(
-		[
-			$elm$svg$Svg$Attributes$transform('translate(125 325)'),
-			$elm$svg$Svg$Events$onClick($author$project$Elmtm2048$Down)
-		]),
-	_List_fromArray(
-		[
-			A2(
-			$elm$svg$Svg$rect,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('0'),
-					$elm$svg$Svg$Attributes$y('0'),
-					$elm$svg$Svg$Attributes$width('50'),
-					$elm$svg$Svg$Attributes$height('50'),
-					$elm$svg$Svg$Attributes$fill('#f0fff0'),
-					$elm$svg$Svg$Attributes$stroke('black')
-				]),
-			_List_Nil),
-			A2(
-			$elm$svg$Svg$text_,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('10'),
-					$elm$svg$Svg$Attributes$y('35'),
-					$elm$svg$Svg$Attributes$fontSize('30'),
-					$elm$svg$Svg$Attributes$fill('green')
-				]),
-			_List_fromArray(
-				[
-					$elm$svg$Svg$text('↓')
-				]))
-		]));
-var $author$project$Elmtm2048$Left = {$: 'Left'};
-var $author$project$Elmtm2048$buttonLeft = A2(
-	$elm$svg$Svg$g,
-	_List_fromArray(
-		[
-			$elm$svg$Svg$Attributes$transform('translate(75 300)'),
-			$elm$svg$Svg$Events$onClick($author$project$Elmtm2048$Left)
-		]),
-	_List_fromArray(
-		[
-			A2(
-			$elm$svg$Svg$rect,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('0'),
-					$elm$svg$Svg$Attributes$y('0'),
-					$elm$svg$Svg$Attributes$width('50'),
-					$elm$svg$Svg$Attributes$height('50'),
-					$elm$svg$Svg$Attributes$fill('#f0fff0'),
-					$elm$svg$Svg$Attributes$stroke('black')
-				]),
-			_List_Nil),
-			A2(
-			$elm$svg$Svg$text_,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('10'),
-					$elm$svg$Svg$Attributes$y('35'),
-					$elm$svg$Svg$Attributes$fontSize('30'),
-					$elm$svg$Svg$Attributes$fill('green')
-				]),
-			_List_fromArray(
-				[
-					$elm$svg$Svg$text('←')
-				]))
-		]));
-var $author$project$Elmtm2048$KeyPress = {$: 'KeyPress'};
-var $author$project$Elmtm2048$Right = {$: 'Right'};
-var $elm$svg$Svg$Events$on = $elm$html$Html$Events$on;
-var $author$project$Elmtm2048$onKeyPress = function (tagger) {
+var $author$project$Elmtm2048sub3$buttonDown = function (over) {
+	var op = function () {
+		if (over.$ === 'Nothing') {
+			return '0.6';
+		} else {
+			var dir = over.a;
+			return (dir === 2) ? '0.3' : '0.6';
+		}
+	}();
 	return A2(
-		$elm$svg$Svg$Events$on,
-		'keypress',
-		$elm$json$Json$Decode$succeed($author$project$Elmtm2048$KeyPress));
+		$elm$svg$Svg$g,
+		_List_fromArray(
+			[
+				$elm$svg$Svg$Attributes$transform('translate(275 580)'),
+				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048sub3$Down),
+				$elm$svg$Svg$Events$onMouseOver(
+				$author$project$Elmtm2048sub3$MouseOver(2)),
+				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048sub3$MouseOut)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$svg$Svg$rect,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x('0'),
+						$elm$svg$Svg$Attributes$y('0'),
+						$elm$svg$Svg$Attributes$width('50'),
+						$elm$svg$Svg$Attributes$height('50'),
+						$elm$svg$Svg$Attributes$fill('#cf93b9'),
+						$elm$svg$Svg$Attributes$fillOpacity(op),
+						$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+						$elm$svg$Svg$Attributes$strokeWidth('2px'),
+						$elm$svg$Svg$Attributes$rx('2'),
+						$elm$svg$Svg$Attributes$ry('2')
+					]),
+				_List_Nil),
+				A2(
+				$elm$svg$Svg$text_,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x('10'),
+						$elm$svg$Svg$Attributes$y('35'),
+						$elm$svg$Svg$Attributes$fontSize('30'),
+						$elm$svg$Svg$Attributes$fill('#ffffe0')
+					]),
+				_List_fromArray(
+					[
+						$elm$svg$Svg$text('↓')
+					]))
+			]));
 };
-var $author$project$Elmtm2048$buttonRight = A2(
-	$elm$svg$Svg$g,
-	_List_fromArray(
-		[
-			$elm$svg$Svg$Attributes$transform('translate(175 300)'),
-			$elm$svg$Svg$Events$onClick($author$project$Elmtm2048$Right),
-			$author$project$Elmtm2048$onKeyPress($author$project$Elmtm2048$KeyPress)
-		]),
-	_List_fromArray(
-		[
-			A2(
-			$elm$svg$Svg$rect,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('0'),
-					$elm$svg$Svg$Attributes$y('0'),
-					$elm$svg$Svg$Attributes$width('50'),
-					$elm$svg$Svg$Attributes$height('50'),
-					$elm$svg$Svg$Attributes$fill('#f0fff0'),
-					$elm$svg$Svg$Attributes$stroke('black')
-				]),
-			_List_Nil),
-			A2(
-			$elm$svg$Svg$text_,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('10'),
-					$elm$svg$Svg$Attributes$y('35'),
-					$elm$svg$Svg$Attributes$fontSize('30'),
-					$elm$svg$Svg$Attributes$fill('green')
-				]),
-			_List_fromArray(
-				[
-					$elm$svg$Svg$text('→')
-				]))
-		]));
-var $author$project$Elmtm2048$Up = {$: 'Up'};
-var $author$project$Elmtm2048$buttonUp = A2(
-	$elm$svg$Svg$g,
-	_List_fromArray(
-		[
-			$elm$svg$Svg$Attributes$transform('translate(125 275)'),
-			$elm$svg$Svg$Events$onClick($author$project$Elmtm2048$Up)
-		]),
-	_List_fromArray(
-		[
-			A2(
-			$elm$svg$Svg$rect,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('0'),
-					$elm$svg$Svg$Attributes$y('0'),
-					$elm$svg$Svg$Attributes$width('50'),
-					$elm$svg$Svg$Attributes$height('50'),
-					$elm$svg$Svg$Attributes$fill('#f0fff0'),
-					$elm$svg$Svg$Attributes$stroke('black')
-				]),
-			_List_Nil),
-			A2(
-			$elm$svg$Svg$text_,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('10'),
-					$elm$svg$Svg$Attributes$y('35'),
-					$elm$svg$Svg$Attributes$fontSize('30'),
-					$elm$svg$Svg$Attributes$fill('green')
-				]),
-			_List_fromArray(
-				[
-					$elm$svg$Svg$text('↑')
-				]))
-		]));
+var $author$project$Elmtm2048sub3$Left = {$: 'Left'};
+var $author$project$Elmtm2048sub3$buttonLeft = function (over) {
+	var op = function () {
+		if (over.$ === 'Nothing') {
+			return '0.6';
+		} else {
+			var dir = over.a;
+			return (dir === 3) ? '0.3' : '0.6';
+		}
+	}();
+	return A2(
+		$elm$svg$Svg$g,
+		_List_fromArray(
+			[
+				$elm$svg$Svg$Attributes$transform('translate(225 555)'),
+				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048sub3$Left),
+				$elm$svg$Svg$Events$onMouseOver(
+				$author$project$Elmtm2048sub3$MouseOver(3)),
+				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048sub3$MouseOut)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$svg$Svg$rect,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x('0'),
+						$elm$svg$Svg$Attributes$y('0'),
+						$elm$svg$Svg$Attributes$rx('2'),
+						$elm$svg$Svg$Attributes$ry('2'),
+						$elm$svg$Svg$Attributes$width('50'),
+						$elm$svg$Svg$Attributes$height('50'),
+						$elm$svg$Svg$Attributes$fill('#cf93b9'),
+						$elm$svg$Svg$Attributes$fillOpacity(op),
+						$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+						$elm$svg$Svg$Attributes$strokeWidth('2px')
+					]),
+				_List_Nil),
+				A2(
+				$elm$svg$Svg$text_,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x('10'),
+						$elm$svg$Svg$Attributes$y('35'),
+						$elm$svg$Svg$Attributes$fontSize('30'),
+						$elm$svg$Svg$Attributes$fill('#ffffe0')
+					]),
+				_List_fromArray(
+					[
+						$elm$svg$Svg$text('←')
+					]))
+			]));
+};
+var $author$project$Elmtm2048sub3$Right = {$: 'Right'};
+var $author$project$Elmtm2048sub3$buttonRight = function (over) {
+	var op = function () {
+		if (over.$ === 'Nothing') {
+			return '0.6';
+		} else {
+			var dir = over.a;
+			return (dir === 4) ? '0.3' : '0.6';
+		}
+	}();
+	return A2(
+		$elm$svg$Svg$g,
+		_List_fromArray(
+			[
+				$elm$svg$Svg$Attributes$transform('translate(325 555)'),
+				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048sub3$Right),
+				$elm$svg$Svg$Events$onMouseOver(
+				$author$project$Elmtm2048sub3$MouseOver(4)),
+				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048sub3$MouseOut)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$svg$Svg$rect,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x('0'),
+						$elm$svg$Svg$Attributes$y('0'),
+						$elm$svg$Svg$Attributes$rx('2'),
+						$elm$svg$Svg$Attributes$ry('2'),
+						$elm$svg$Svg$Attributes$width('50'),
+						$elm$svg$Svg$Attributes$height('50'),
+						$elm$svg$Svg$Attributes$fill('#cf93b9'),
+						$elm$svg$Svg$Attributes$fillOpacity(op),
+						$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+						$elm$svg$Svg$Attributes$strokeWidth('2px')
+					]),
+				_List_Nil),
+				A2(
+				$elm$svg$Svg$text_,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x('10'),
+						$elm$svg$Svg$Attributes$y('35'),
+						$elm$svg$Svg$Attributes$fontSize('30'),
+						$elm$svg$Svg$Attributes$fill('#ffffe0')
+					]),
+				_List_fromArray(
+					[
+						$elm$svg$Svg$text('→')
+					]))
+			]));
+};
+var $author$project$Elmtm2048sub3$Up = {$: 'Up'};
+var $author$project$Elmtm2048sub3$buttonUp = function (over) {
+	var op = function () {
+		if (over.$ === 'Nothing') {
+			return '0.6';
+		} else {
+			var dir = over.a;
+			return (dir === 1) ? '0.3' : '0.6';
+		}
+	}();
+	return A2(
+		$elm$svg$Svg$g,
+		_List_fromArray(
+			[
+				$elm$svg$Svg$Attributes$transform('translate(275 530)'),
+				$elm$svg$Svg$Events$onClick($author$project$Elmtm2048sub3$Up),
+				$elm$svg$Svg$Events$onMouseOver(
+				$author$project$Elmtm2048sub3$MouseOver(1)),
+				$elm$svg$Svg$Events$onMouseOut($author$project$Elmtm2048sub3$MouseOut)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$svg$Svg$rect,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x('0'),
+						$elm$svg$Svg$Attributes$y('0'),
+						$elm$svg$Svg$Attributes$width('50'),
+						$elm$svg$Svg$Attributes$height('50'),
+						$elm$svg$Svg$Attributes$fill('#cf93b9'),
+						$elm$svg$Svg$Attributes$fillOpacity(op),
+						$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+						$elm$svg$Svg$Attributes$strokeWidth('2px'),
+						$elm$svg$Svg$Attributes$rx('2'),
+						$elm$svg$Svg$Attributes$ry('2')
+					]),
+				_List_Nil),
+				A2(
+				$elm$svg$Svg$text_,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x('10'),
+						$elm$svg$Svg$Attributes$y('35'),
+						$elm$svg$Svg$Attributes$fontSize('30'),
+						$elm$svg$Svg$Attributes$fill('#ffffe0')
+					]),
+				_List_fromArray(
+					[
+						$elm$svg$Svg$text('↑')
+					]))
+			]));
+};
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$Events$onClick = function (msg) {
 	return A2(
@@ -6734,9 +6888,9 @@ var $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$node = F5(
 				els));
 	});
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$svg = $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$node;
-var $author$project$Elmtm2048$animatedSvg = $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$svg(
+var $author$project$Elmtm2048sub3$animatedSvg = $andrewMacmurray$elm_simple_animation$Simple$Animation$Animated$svg(
 	{_class: $elm$svg$Svg$Attributes$class});
-var $author$project$Elmtm2048$animatedG = $author$project$Elmtm2048$animatedSvg($elm$svg$Svg$g);
+var $author$project$Elmtm2048sub3$animatedG = $author$project$Elmtm2048sub3$animatedSvg($elm$svg$Svg$g);
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$Step = F2(
 	function (a, b) {
 		return {$: 'Step', a: a, b: b};
@@ -6878,7 +7032,7 @@ var $andrewMacmurray$elm_simple_animation$Internal$Transform$Y = function (a) {
 };
 var $andrewMacmurray$elm_simple_animation$Internal$Transform$y = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Transform$Translate, $andrewMacmurray$elm_simple_animation$Internal$Transform$Y);
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$Property$y = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Transform, $andrewMacmurray$elm_simple_animation$Internal$Transform$y);
-var $author$project$Elmtm2048$fade = F2(
+var $author$project$Elmtm2048sub3$fade = F2(
 	function (start, stop) {
 		return A2(
 			$andrewMacmurray$elm_simple_animation$Simple$Animation$steps,
@@ -6903,15 +7057,13 @@ var $author$project$Elmtm2048$fade = F2(
 				]));
 	});
 var $elm$svg$Svg$Attributes$opacity = _VirtualDom_attribute('opacity');
-var $elm$svg$Svg$Attributes$rx = _VirtualDom_attribute('rx');
-var $elm$svg$Svg$Attributes$ry = _VirtualDom_attribute('ry');
-var $author$project$Elmtm2048$panel = function (digit) {
+var $author$project$Elmtm2048sub3$panel = function (digit) {
 	return A3(
-		$author$project$Elmtm2048$animatedG,
+		$author$project$Elmtm2048sub3$animatedG,
 		A2(
-			$author$project$Elmtm2048$fade,
-			{x: digit.prevX * 50, y: digit.prevY * 50},
-			{x: digit.x * 50, y: digit.y * 50}),
+			$author$project$Elmtm2048sub3$fade,
+			{x: digit.prevX * 100, y: digit.prevY * 100},
+			{x: digit.x * 100, y: digit.y * 100}),
 		_List_Nil,
 		_List_fromArray(
 			[
@@ -6920,12 +7072,13 @@ var $author$project$Elmtm2048$panel = function (digit) {
 				_List_fromArray(
 					[
 						$elm$svg$Svg$Attributes$fill('pink'),
-						$elm$svg$Svg$Attributes$opacity('0.5'),
-						$elm$svg$Svg$Attributes$width('50'),
-						$elm$svg$Svg$Attributes$height('50'),
-						$elm$svg$Svg$Attributes$stroke('brown'),
-						$elm$svg$Svg$Attributes$rx('8'),
-						$elm$svg$Svg$Attributes$ry('8')
+						$elm$svg$Svg$Attributes$opacity('0.6'),
+						$elm$svg$Svg$Attributes$width('100'),
+						$elm$svg$Svg$Attributes$height('100'),
+						$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+						$elm$svg$Svg$Attributes$strokeWidth('10px'),
+						$elm$svg$Svg$Attributes$rx('4'),
+						$elm$svg$Svg$Attributes$ry('4')
 					]),
 				_List_Nil),
 				A2(
@@ -6933,9 +7086,11 @@ var $author$project$Elmtm2048$panel = function (digit) {
 				_List_fromArray(
 					[
 						$elm$svg$Svg$Attributes$x(
-						$elm$core$String$fromInt(25)),
+						$elm$core$String$fromInt(30)),
 						$elm$svg$Svg$Attributes$y(
-						$elm$core$String$fromInt(25))
+						$elm$core$String$fromInt(65)),
+						$elm$svg$Svg$Attributes$fontSize('30'),
+						$elm$svg$Svg$Attributes$fill('#cf64a0')
 					]),
 				_List_fromArray(
 					[
@@ -6945,28 +7100,7 @@ var $author$project$Elmtm2048$panel = function (digit) {
 			]));
 };
 var $elm$svg$Svg$svg = $elm$svg$Svg$trustedNode('svg');
-var $author$project$Elmtm2048$view = function (model) {
-	var buttons = _List_fromArray(
-		[
-			A2(
-			$elm$svg$Svg$rect,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x('50'),
-					$elm$svg$Svg$Attributes$y('50'),
-					$elm$svg$Svg$Attributes$width('200'),
-					$elm$svg$Svg$Attributes$height('200'),
-					$elm$svg$Svg$Attributes$fill('#fff0f5'),
-					$elm$svg$Svg$Attributes$stroke('brown'),
-					$elm$svg$Svg$Attributes$rx('8'),
-					$elm$svg$Svg$Attributes$ry('8')
-				]),
-			_List_Nil),
-			$author$project$Elmtm2048$buttonUp,
-			$author$project$Elmtm2048$buttonDown,
-			$author$project$Elmtm2048$buttonLeft,
-			$author$project$Elmtm2048$buttonRight
-		]);
+var $author$project$Elmtm2048sub3$view = function (model) {
 	switch (model.$) {
 		case 'SetUp':
 			return $elm$html$Html$text('setup');
@@ -6978,13 +7112,13 @@ var $author$project$Elmtm2048$view = function (model) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text('You win'),
+						$elm$html$Html$text('Finish'),
 						A2($elm$html$Html$br, _List_Nil, _List_Nil),
 						A2(
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$Elmtm2048$Restart),
+								$elm$html$Html$Events$onClick($author$project$Elmtm2048sub3$Restart),
 								$elm$svg$Svg$Attributes$fontSize('1000')
 							]),
 						_List_fromArray(
@@ -6996,39 +7130,302 @@ var $author$project$Elmtm2048$view = function (model) {
 						$elm$svg$Svg$svg,
 						_List_fromArray(
 							[
-								$elm$svg$Svg$Attributes$width('600'),
-								$elm$svg$Svg$Attributes$height('600')
+								$elm$svg$Svg$Attributes$width('1000'),
+								$elm$svg$Svg$Attributes$height('1000')
 							]),
 						$elm$core$List$concat(
 							_List_fromArray(
 								[
-									buttons,
-									A2($elm$core$List$map, $author$project$Elmtm2048$panel, stones)
+									A2($elm$core$List$map, $author$project$Elmtm2048sub3$panel, stones)
 								])))
 					]));
 		default:
 			var stones = model.a;
+			var button = model.b;
+			var buttons = _List_fromArray(
+				[
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('100'),
+							$elm$svg$Svg$Attributes$y('100'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('200'),
+							$elm$svg$Svg$Attributes$y('200'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('300'),
+							$elm$svg$Svg$Attributes$y('300'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('400'),
+							$elm$svg$Svg$Attributes$y('400'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('100'),
+							$elm$svg$Svg$Attributes$y('200'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('100'),
+							$elm$svg$Svg$Attributes$y('300'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('100'),
+							$elm$svg$Svg$Attributes$y('400'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('200'),
+							$elm$svg$Svg$Attributes$y('100'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('200'),
+							$elm$svg$Svg$Attributes$y('300'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('200'),
+							$elm$svg$Svg$Attributes$y('400'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('300'),
+							$elm$svg$Svg$Attributes$y('100'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('300'),
+							$elm$svg$Svg$Attributes$y('200'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('300'),
+							$elm$svg$Svg$Attributes$y('400'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('400'),
+							$elm$svg$Svg$Attributes$y('100'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('400'),
+							$elm$svg$Svg$Attributes$y('200'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$x('400'),
+							$elm$svg$Svg$Attributes$y('300'),
+							$elm$svg$Svg$Attributes$width('100'),
+							$elm$svg$Svg$Attributes$height('100'),
+							$elm$svg$Svg$Attributes$fill('pink'),
+							$elm$svg$Svg$Attributes$fillOpacity('0.3'),
+							$elm$svg$Svg$Attributes$stroke('#cf93a0'),
+							$elm$svg$Svg$Attributes$strokeWidth('10px'),
+							$elm$svg$Svg$Attributes$rx('3'),
+							$elm$svg$Svg$Attributes$ry('3')
+						]),
+					_List_Nil),
+					$author$project$Elmtm2048sub3$buttonUp(button),
+					$author$project$Elmtm2048sub3$buttonDown(button),
+					$author$project$Elmtm2048sub3$buttonLeft(button),
+					$author$project$Elmtm2048sub3$buttonRight(button)
+				]);
 			return A2(
 				$elm$svg$Svg$svg,
 				_List_fromArray(
 					[
-						$elm$svg$Svg$Attributes$width('600'),
-						$elm$svg$Svg$Attributes$height('600')
+						$elm$svg$Svg$Attributes$width('1000'),
+						$elm$svg$Svg$Attributes$height('1000')
 					]),
 				$elm$core$List$concat(
 					_List_fromArray(
 						[
 							buttons,
-							A2($elm$core$List$map, $author$project$Elmtm2048$panel, stones)
+							A2($elm$core$List$map, $author$project$Elmtm2048sub3$panel, stones)
 						])));
 	}
 };
-var $author$project$Elmtm2048$main = $elm$browser$Browser$element(
-	{init: $author$project$Elmtm2048$init, subscriptions: $author$project$Elmtm2048$subscriptions, update: $author$project$Elmtm2048$update, view: $author$project$Elmtm2048$view});
-_Platform_export({'Elmtm2048':{'init':$author$project$Elmtm2048$main(
+var $author$project$Elmtm2048sub3$main = $elm$browser$Browser$element(
+	{init: $author$project$Elmtm2048sub3$init, subscriptions: $author$project$Elmtm2048sub3$subscriptions, update: $author$project$Elmtm2048sub3$update, view: $author$project$Elmtm2048sub3$view});
+_Platform_export({'Elmtm2048sub3':{'init':$author$project$Elmtm2048sub3$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
 
-  var app = Elm.Elmtm2048.init({ node: document.getElementById("elm") });
+  var app = Elm.Elmtm2048sub3.init({ node: document.getElementById("elm") });
 }
 catch (e)
 {
